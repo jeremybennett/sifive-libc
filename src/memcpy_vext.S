@@ -40,10 +40,10 @@ ENTRY(memcpy)
 L(loop):
     vsetvli iVL, iNum, e8, ELEM_LMUL_SETTING, ta, ma
 
-    vle8.v vData, (pSrc)
+    vl1re8.v vData, (pSrc)
     sub iNum, iNum, iVL
     add pSrc, pSrc, iVL
-    vse8.v vData, (pDstPtr)
+    vs1r.v vData, (pDstPtr)
     add pDstPtr, pDstPtr, iVL
 
     bnez iNum, L(loop)
